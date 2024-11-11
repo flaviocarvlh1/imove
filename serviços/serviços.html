@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="/JavaScript/main.js"></script>
+    <script src="https://kit.fontawesome.com/10053d2c6d.js" crossorigin="anonymous"></script>
+
+    <link rel="shortcut icon" href="/IMAGE/favicon.ico" type="image/x-icon">
+    <script type="text/JavaScript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNzw7-4dD5ANbengcYqv5pGccbFZQ7p6E&callback=myMap">
+    </script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js
+    "></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" rel="folha de estilo">
+    <link rel="stylesheet" href="/CSS/style.css">
+
+    <title>iMovi - Caso Pratico JS</title>
+</head>
+<body  onload="carregarMapa()">
+    
+    <header>
+       
+        <div class="container-fluid " id="navbar">
+            <div class="row fixed-top" style="background-color: #e9e5e5;">
+                <div class="col-1">
+                    
+                    <a class="navbar-brand " href="#">
+                        <img src="/IMAGE/imovi-icon.png" width="40" height="30" class="d-inline-block align-top" alt="">
+                        <span class="text-body"><strong>iMovi</strong></span>
+                    </a>
+                </div>
+
+                <div class="col-10 ml-4 mt-1 navgatio">
+                    <ul class="nav justify-content-center nav-pills">
+                        <li class="nav-item ">
+                          <a class=" p-2 text-body" id="ativo" href="/index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="p-2 text-body" href="/serviços/serviços.html">Serviços</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="p-2 text-body" href="/contactos/contactos.html">Contactar</a>
+                        </li>
+                       
+                      </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <form id="orcamentoForm" action="POST" style="background-color: #f5eeee;">
+
+      <h4 style="text-align: center;">Faça um orçamento:</h4>
+      Nome: <input type="text" name="nome" id="nome" required><br>
+      Apelido: <input type="text" name="apelido" id="apelido" required><br>
+      Telemovel: <input type="number" name="telefone" id="telefone" required><br>
+    
+      <h6>Pedidos de orçamento:</h6>
+      <p>Tipos de Página web:</p>
+      <select id="tipoPagina" class="form-control" onchange="calcularOrcamento()">
+        <option value="20000">€ 20.000</option>
+        <option value="25000">€ 25.000</option>
+        <option value="30000">€ 30.000</option>
+      </select>
+    
+      <label for="prazoMeses">Prazo em Meses:</label>
+      <input type="number" id="prazoMeses" name="prazoMeses" min="1" onchange="calcularOrcamento()"><br>
+    
+      <p>Separadores Desejados:</p>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="separadores1" onchange="calcularOrcamento()">
+        <label class="form-check-label" for="separadores1">Quem somos</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="separadores2" onchange="calcularOrcamento()">
+        <label class="form-check-label" for="separadores2">Onde Estamos</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="separadores3" onchange="calcularOrcamento()">
+        <label class="form-check-label" for="separadores3">Galeria de fotos</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="separadores1" onchange="calcularOrcamento()">
+        <label class="form-check-label" for="separadores1">eCommerce</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="separadores2" onchange="calcularOrcamento()">
+        <label class="form-check-label" for="separadores2">Gestão interna</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="separadores3" onchange="calcularOrcamento()">
+        <label class="form-check-label" for="separadores3">Noticias</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="separadores3" onchange="calcularOrcamento()">
+        <label class="form-check-label" for="separadores3">Redes sociais</label>
+      </div>
+    
+      <div class="resultado" style="margin-top: 10px; margin-bottom: 20px;">
+        <h6>Orçamento estimado</h6>
+        <p>(é um valor meramente indicativo, pode sofrer alterações)</p>
+        <input type="text" id="resultado" readonly>
+      </div>
+    </form>
+    
+    <script>
+      function calcularOrcamento() {
+        var tipoPagina = parseFloat(document.getElementById("tipoPagina").value);
+        var prazoMeses = parseInt(document.getElementById("prazoMeses").value);
+        var separadores = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        var orcamento = tipoPagina;
+    
+        // Aplicar desconto de 5% por mês, com limite de 20%
+        var desconto = prazoMeses * 5;
+        if (desconto > 20) {
+          desconto = 20;
+        }
+        orcamento -= orcamento * (desconto / 100);
+    
+        // Adicionar 400 euros para cada caixa de separadores marcada
+        orcamento += separadores * 400;
+    
+        document.getElementById("resultado").value = "€ " + orcamento.toFixed(2);
+      }
+    </script>
+    
+
+
+  <footer id="footer" class="bg-body-tertiary text-center">
+    
+    <div class="container p-4 pb-0">
+      
+      <section class="mb-4">
+        
+        <a
+        data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #3b5998;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+  
+        
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #55acee;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-twitter"></i
+        ></a>
+  
+        
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #dd4b39;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-google"></i
+        ></a>
+  
+       
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #ac2bac;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-instagram"></i
+        ></a>
+  
+        
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #0082ca;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+    
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #333333;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-github"></i
+        ></a>
+      </section>
+      
+    </div>
+    
+  
+    
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2020 Copyright:
+      <a class="text-body" href="https://mdbootstrap.com/">iMovi</a>
+    </div>
+   
+  </footer>
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+</body>
+</html>

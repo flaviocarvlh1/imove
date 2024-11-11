@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="/JavaScript/main.js"></script>
+    <script src="https://kit.fontawesome.com/10053d2c6d.js" crossorigin="anonymous"></script>
+
+    <link rel="shortcut icon" href="/IMAGE/favicon.ico" type="image/x-icon">
+    <script type="text/JavaScript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNzw7-4dD5ANbengcYqv5pGccbFZQ7p6E&callback=myMap">
+    </script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js
+    "></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" rel="folha de estilo">
+   
+
+    <style>
+      #form {
+        margin: auto;
+        margin-top: 10vh;
+        border: 1px solid #333333;
+        width: 500px;
+        padding: 20px;
+        background-color: #f5eeee;
+      }
+    </style>
+
+    <title>iMovi - Caso Pratico JS</title>
+</head>
+<body>
+    
+    <header>
+       
+        <div class="container-fluid " id="navbar">
+            <div class="row fixed-top" style="background-color: #e9e5e5;">
+                <div class="col-1">
+                    
+                    <a class="navbar-brand " href="#">
+                        <img src="/IMAGE/imovi-icon.png" width="40" height="30" class="d-inline-block align-top" alt="">
+                        <span class="text-body"><strong>iMovi</strong></span>
+                    </a>
+                </div>
+
+                <div class="col-10 ml-4 mt-1 navgatio">
+                    <ul class="nav justify-content-center nav-pills">
+                        <li class="nav-item ">
+                          <a class=" p-2 text-body" id="ativo" href="/index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="p-2 text-body" href="/serviços/serviços.html">Serviços</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="p-2 text-body" href="/contactos/contactos.html">Contactar</a>
+                        </li>
+                       
+                      </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="form">
+      <h2>Formulário de Contacto</h2>
+    <form id="contactForm" onsubmit="return validateForm()">
+      <div>
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome" required><br>
+        <span id="nomeError" class="error"></span>
+      </div>
+      <div>
+        <label for="apelido">Apelido:</label><br>
+        <input type="text" id="apelido" name="apelido" required><br>
+        <span id="apelidoError" class="error"></span>
+      </div>
+      <div>
+        <label for="telemovel">Telemóvel:</label><br>
+        <input type="tel" id="telemovel" name="telemovel" pattern="[0-9]{9}" required><br>
+        <span id="telemovelError" class="error"></span>
+      </div>
+      <div>
+        <label for="email">E-mail:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        <span id="emailError" class="error"></span>
+      </div>
+      <div>
+        <label for="data">Data:</label><br>
+        <input type="date" id="data" name="data" required><br>
+        <span id="dataError" class="error"></span>
+      </div>
+      <div>
+        <label for="motivo">Motivo do Contacto:</label><br>
+        <textarea id="motivo" name="motivo" rows="4" required></textarea><br>
+        <span id="motivoError" class="error"></span>
+      </div>
+      <button type="submit">Enviar</button>
+    </form>
+    </section>
+    
+
+<script>
+function validateForm() {
+    var nome = document.getElementById("nome").value;
+    var apelido = document.getElementById("apelido").value;
+    var telemovel = document.getElementById("telemovel").value;
+    var email = document.getElementById("email").value;
+    var data = document.getElementById("data").value;
+    var motivo = document.getElementById("motivo").value;
+    var isValid = true;
+
+    // Resetando mensagens de erro
+    document.querySelectorAll('.error').forEach(function(element) {
+        element.innerHTML = '';
+    });
+
+    // Verificando nome
+    if (nome.trim() === '') {
+        document.getElementById("nomeError").innerHTML = "Por favor, insira o nome";
+        isValid = false;
+    }
+
+    // Verificando apelido
+    if (apelido.trim() === '') {
+        document.getElementById("apelidoError").innerHTML = "Por favor, insira o apelido";
+        isValid = false;
+    }
+
+    // Verificando telemovel
+    if (telemovel.trim() === '' || isNaN(telemovel) || telemovel.length !== 9) {
+        document.getElementById("telemovelError").innerHTML = "Por favor, insira um número de telemóvel válido";
+        isValid = false;
+    }
+
+    // Verificando email
+    if (email.trim() === '' || !validateEmail(email)) {
+        document.getElementById("emailError").innerHTML = "Por favor, insira um email válido";
+        isValid = false;
+    }
+
+    // Verificando data
+    if (data.trim() === '') {
+        document.getElementById("dataError").innerHTML = "Por favor, selecione uma data";
+        isValid = false;
+    }
+
+    // Verificando motivo
+    if (motivo.trim() === '') {
+        document.getElementById("motivoError").innerHTML = "Por favor, insira o motivo do contacto";
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+</script>
+
+
+
+  <footer id="footer" class="bg-body-tertiary text-center">
+    
+    <div class="container p-4 pb-0">
+      
+      <section class="mb-4">
+        
+        <a
+        data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #3b5998;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+  
+        
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #55acee;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-twitter"></i
+        ></a>
+  
+        
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #dd4b39;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-google"></i
+        ></a>
+  
+       
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #ac2bac;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-instagram"></i
+        ></a>
+  
+        
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #0082ca;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+    
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #333333;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-github"></i
+        ></a>
+      </section>
+      
+    </div>
+    
+  
+    
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2020 Copyright:
+      <a class="text-body" href="https://mdbootstrap.com/">iMovi</a>
+    </div>
+   
+  </footer>
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+</body>
+</html>

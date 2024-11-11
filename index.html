@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head onload="funcaoPaginaCarregada()">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="/JavaScript/main.js"></script>
+    <script src="https://kit.fontawesome.com/10053d2c6d.js" crossorigin="anonymous"></script>
+
+    <link rel="shortcut icon" href="/IMAGE/favicon.ico" type="image/x-icon">
+    <script type="text/JavaScript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNzw7-4dD5ANbengcYqv5pGccbFZQ7p6E&callback=myMap">
+    </script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js
+    "></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" rel="folha de estilo">
+    <link rel="stylesheet" href="/CSS/style.css">
+
+    <title>iMovi - Caso Pratico JS</title>
+</head>
+<body  onload="initMap()">>
+    
+    <header>
+       
+        <div class="container-fluid " id="navbar">
+            <div class="row fixed-top" style="background-color: #f5eeee;">
+                <div class="col-1">
+                    
+                    <a class="navbar-brand " href="#">
+                        <img src="/IMAGE/imovi-icon.png" width="40" height="30" class="d-inline-block align-top" alt="">
+                        <span class="text-body"><strong>iMovi</strong></span>
+                    </a>
+                </div>
+
+                <div class="col-10 ml-4 mt-1 navgatio mb-2">
+                  <ul class="nav justify-content-center nav-pills">
+                    <li class="nav-item ">
+                      <a class=" p-2 text-body" id="ativo" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="p-2 text-body" href="/serviços/serviços.html">Serviços</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="p-2 text-body" href="/contactos/contactos.html">Contactar</a>
+                    </li>
+                   
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+
+    <section class="container mt-2">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" src="/IMAGE/banner-1.jpg" alt="Primeiro Slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="/IMAGE/banner-2.jpg" alt="Segundo Slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="/IMAGE/banner-3.jpg" alt="Terceiro Slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+              <span class="sr-only ">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Próximo</span>
+            </a>
+          </div>
+    </section>
+
+   
+
+    <section>
+      <div class="container mt-4 mb-4 text-center" id="cards" >
+        <div class="col-4 col-md-4">
+          <div class="card p-4" style="width: 18rem;">
+            <span class="material-icons">
+              <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#434343"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 13v8h8v-8h-8zM3 21h8v-8H3v8zM3 3v8h8V3H3zm13.66-1.31L11 7.34 16.66 13l5.66-5.66-5.66-5.65z"/></svg>            
+
+              </span>
+            <div class="card-body">
+              <h5 class="card-title">Projetos completos</h5>
+              <p class="card-text mt-4 mb-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+              <a href="#" class="card-link">Saber Mais</a>
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 col-md-4">
+          <div class="card p-4" style="width: 18rem;">
+            <span class="material-icons">
+              <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="48px" viewBox="0 0 24 24" width="48px" fill="#434343"><g><path d="M0,0h24v24H0V0z" fill="none"/></g><g><path d="M19,3h-4.18C14.4,1.84,13.3,1,12,1S9.6,1.84,9.18,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5 C21,3.9,20.1,3,19,3z M12,2.75c0.41,0,0.75,0.34,0.75,0.75S12.41,4.25,12,4.25s-0.75-0.34-0.75-0.75S11.59,2.75,12,2.75z M9.1,17H7 v-2.14l5.96-5.96l2.12,2.12L9.1,17z M16.85,9.27l-1.06,1.06l-2.12-2.12l1.06-1.06c0.2-0.2,0.51-0.2,0.71,0l1.41,1.41 C17.05,8.76,17.05,9.07,16.85,9.27z"/></g></svg>
+              </span>
+            <div class="card-body">
+              <h5 class="card-title">Você participa também</h5>
+              
+              <p class="card-text ">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+              <a href="#" class="card-link">Saber Mais</a>
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 col-md-4">
+          
+          <div class="card  p-4" style="width: 18rem;">
+            <span class="material-icons">
+              <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#434343"><path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/></svg>
+              </span>
+            <div class="card-body">
+              <h5 class="card-title">Adiantamento de entregas</h5>
+              
+              <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+              <a href="#" class="card-link">Saber Mais</a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section >
+
+    
+    <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <div style="border-bottom: 3px solid #6d6666; width: 60px; margin-bottom: 15px;"></div>
+            <h3>Trabalhos em Destaque</h3>
+            <p style="color: #6d6666;">Conheça nossos projetos mais desafiadores</p>
+          </div>
+        </div>
+    </div>
+
+    
+    <section>
+      <div class="container">
+        <div class="row projects">
+          <div class="col-sm">
+            
+              <div class="card-body">
+               <a href="/IMAGE/project-1.jpg" target="_blank"><img src="/IMAGE/project-1.jpg" style="width: 300px; height: 500px;" alt=""></a> 
+                <div class="card-img-overlay text-center d-flex textoCard">
+                  
+                  <p>Projeto 1</p>
+                  
+                </div>
+              </div>
+            
+          </div>
+
+        
+            <div class="col-sm">
+              
+                <div class="card-body">
+                  <img src="/IMAGE/project-2.jpg" style="width: 300px; height: 480px;" alt="">
+                  <div class="card-img-overlay text-center d-flex textoCard">
+                  
+                    <p>Projeto 2</p>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <div class="col-sm">
+                
+                  <div class="card-body">
+                    <img src="/IMAGE/project-3.jpg" style="width: 300px; height: 510px;" alt="">
+                    <div class="card-img-overlay text-center d-flex textoCard">
+                  
+                      <p>Projeto 3</p>
+                      
+                    </div>
+                  </div>
+                
+              </div>
+        </div>
+
+        <div class="row projects">
+          <div class="col-sm">
+            
+              <div class="card-body">
+                <img src="/IMAGE/project-4.jpg" style="width: 300px; height: 520px;" alt="">
+                <div class="card-img-overlay text-center d-flex textoCard">
+                  
+                  <p>Projeto 4</p>
+                  
+                </div>
+              </div>
+            
+          </div>
+
+        
+            <div class="col-sm">
+              
+                <div class="card-body">
+                  <img src="/IMAGE/project-5.jpg" style="width: 300px; height: 510px;" alt="">
+                  <div class="card-img-overlay text-center d-flex textoCard">
+                  
+                    <p>Projeto 5</p>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <div class="col-sm">
+                
+                  <div class="card-body">
+                    <img src="/IMAGE/project-6.jpg" style="width: 300px; height: 490px;" alt="">
+                    <div class="card-img-overlay text-center d-flex textoCard">
+                  
+                      <p>Projeto 6</p>
+                      
+                    </div>
+                  </div>
+                
+              </div>
+        </div>
+      </div>
+      
+    </section>
+
+    <div class="container d-flex" id="localizacao">
+      <div class="row">
+        <div class="col-sm">
+          <div style="border-bottom: 3px solid #6d6666; width: 60px; margin-bottom: 15px;"></div>
+          <h3>Detalhes Importantes</h3>
+          <p style="color: #6d6666;">Conheça a nossa sede! </p>
+        </div>
+      </div>
+  </div>
+
+  <div class="container mb-4">
+    <div class="row">
+      <div class="col-sm">
+        <img src="/IMAGE/infobanner.jpg" id="sedeImg" style="width: 100%; height: 100%; margin-bottom: 25px;" alt="Imagem responsiva">
+      </div>
+
+      <div class="col-sm">
+        <div id="map"></div>
+        <div id="street-view"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container rsFeed">
+    <h1>RSS Reader</h1>
+    <div id="rss-feed"></div>
+  </div>
+
+  <footer class="bg-body-tertiary text-center">
+    
+    <div class="container p-4 pb-0">
+      
+      <section class="mb-4">
+        
+        <a
+        data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #3b5998;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+  
+        
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #55acee;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-twitter"></i
+        ></a>
+  
+        
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #dd4b39;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-google"></i
+        ></a>
+  
+       
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #ac2bac;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-instagram"></i
+        ></a>
+  
+        
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #0082ca;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+    
+        <a
+          data-mdb-ripple-init
+          class="btn text-white btn-floating m-1"
+          style="background-color: #333333;"
+          href="#!"
+          role="button"
+          ><i class="fab fa-github"></i
+        ></a>
+      </section>
+      
+    </div>
+    
+  
+    
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2020 Copyright:
+      <a class="text-body" href="https://mdbootstrap.com/">iMovi</a>
+    </div>
+   
+  </footer>
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.js"></script> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" /> 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNzw7-4dD5ANbengcYqv5pGccbFZQ7p6E&_API&callback=initMap" async defer></script>
+
+    
+  
+
+    
+</body>
+</html>
