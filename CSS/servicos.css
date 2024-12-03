@@ -1,0 +1,35 @@
+/* Estilo do formulário */
+#orcamentoForm {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 80px; /* Espaçamento superior para não sobrepor o menu */
+}
+
+/* Estilo dos inputs e selects */
+#orcamentoForm input[type="text"],
+#orcamentoForm input[type="number"],
+#orcamentoForm select {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilo dos botões e checkboxes */
+.form-check-input {
+    margin-right: 5px;
+}
+
+.form-check-label {
+    font-size: 0.95rem;
+}
+
+/* Estilo da área de resultado */
+.resultado {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
